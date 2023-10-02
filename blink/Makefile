@@ -20,7 +20,6 @@ OBJDUMP := $(CROSS_COMPILE)-objdump
 SIZE := $(CROSS_COMPILE)-size
 GDB := $(CROSS_COMPILE)-gdb
 
-
 COMMON_FLAGS += -mcpu=cortex-m0plus -march=armv6-m -mthumb
 ASFLAGS := $(COMMON_FLAGS) --warn --fatal-warnings
 CFLAGS := -I$(INCLUDE_DIR) -std=c17 $(COMMON_FLAGS)
@@ -33,8 +32,7 @@ LDFLAGS += -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,-T$(LDFILE)
 S_SRCS := $(wildcard $(SRC_DIR)/*.s)
 S_OBJS += $(subst $(SRC_DIR)/,$(BUILD_DIR)/,$(S_SRCS:.s=.o))
 
-C_SRCS := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c $(SRC_DIR)/*/*/*.c \
-		  	$(SRC_DIR)/*/*/*/*.c $(SRC_DIR)/*/*/*/*/*.c)
+C_SRCS := $(wildcard $(SRC_DIR)/*.c)
 C_OBJS := $(subst $(SRC_DIR)/,$(BUILD_DIR)/,$(C_SRCS:.c=.o))
 
 # Prettify output
